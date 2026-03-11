@@ -9,7 +9,7 @@ themselves, all within a limited number of moves.
 The game features two modes: **Story Mode** (lighthearted, introductory) and **Hard Mode**
 (challenging mechanics that build on everything learned in Story Mode).
 
-🎮 **[Play it here](#)** ← replace with your PuzzleScript share link
+🎮 **[[Play it here](#)] -> (https://www.puzzlescript.net/play.html?p=46a8a407dd664985ab3f8e38170c0139)**
 
 ---
 
