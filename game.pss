@@ -1,0 +1,664 @@
+title The Very Hungry Caterpillar 
+author Desiree Howell
+homepage www.puzzlescript.net
+
+debug
+
+========
+OBJECTS
+========
+
+Background
+DARKGREEN #64ad56
+11111
+11111
+11101
+11011
+11111
+
+Wall
+Grey Darkgrey
+01000
+11111
+00010
+11111
+01000
+
+Token
+Yellow
+.....
+.000.
+.000.
+.000.
+.....
+
+MoveCounter
+transparent
+
+Move1
+Black Lightgrey
+00000
+01010
+01010
+01110
+01110
+
+Move2
+Black LightGrey
+10001
+10101
+10101
+10101
+10001
+
+Move3
+Black Lightgrey
+01110
+01110
+01110
+10101
+11011
+
+Move4
+Black Lightgrey
+10000
+10111
+10001
+10111
+10000
+
+Move5
+Black Lightgrey
+10000
+10111
+10000
+11110
+10000
+
+Player
+green
+
+Body
+green
+
+Mark
+black
+.....
+..0..
+.....
+.....
+.....
+
+Apple
+RED BLACK
+..1..
+.000.
+.000.
+.000.
+.....
+
+Pear
+Lightgreen Black
+..1..
+.000.
+.000.
+.000.
+.....
+
+Plum
+Purple Black
+..1..
+.000.
+.000.
+.000.
+.....
+
+Strawberry
+RED Green
+..1..
+.000.
+.000.
+..0..
+.....
+
+Orange
+Orange Black
+..1..
+.000.
+.000.
+.000.
+.....
+
+Cake
+Brown Red
+..1..
+.000.
+.000.
+.000.
+.....
+
+IceCream
+Brown Pink
+..1..
+.111.
+.111.
+.000.
+..0..
+
+Pickle
+DarkGreen
+.000.
+.000.
+.000.
+.000.
+.000.
+
+Cheese
+Yellow
+.....
+.000.
+.000.
+.000.
+.....
+
+Salami
+DarkBrown
+..0..
+.000.
+.000.
+.000.
+.000.
+
+Lolipop
+Blue Yellow Brown
+.100.
+.011.
+.010.
+..2..
+..2..
+
+Pie
+Red Brown
+.1111
+.110.
+.10..
+.10..
+.....
+
+Sausage
+DarkRed
+..0..
+.000.
+.000.
+.000.
+..0..
+
+Cupcake
+Brown Blue
+.000.
+.000.
+.111.
+.111.
+.....
+
+Watermelon
+Pink Black Green
+..0..
+.010.
+01010
+00000
+22222
+
+Leaf
+Green Black
+..0..
+.000.
+00000
+.000.
+..1..
+
+LeftCherry
+Darkred Black
+..11.
+..1..
+.000.
+.000.
+.....
+
+TopPear
+Lightgreen Black
+..1..
+.000.
+.000.
+.000.
+.....
+
+CanEat
+transparent
+
+GrowthPlum
+Purple Black
+..1..
+.000.
+.000.
+.000.
+.....
+
+WidthSegment
+Green 
+
+WidthBody
+Green
+
+Width2
+transparent
+
+WidthMark
+transparent
+
+WidthLevel
+transparent
+
+UnripeApple
+Lightgreen Black
+..1..
+.000.
+.000.
+.000.
+.....
+
+UnripeBanana
+Lightgreen Brown
+..11.
+..00.
+..00.
+0.00.
+0000.
+
+RipeBanana
+Yellow Darkbrown
+..11.
+..00.
+..00.
+0.00.
+0000.
+
+AppleCounter5
+transparent
+AppleCounter4
+transparent
+AppleCounter3
+transparent
+AppleCounter2
+transparent
+AppleCounter1
+transparent
+
+BananaCounter3
+transparent
+BananaCounter2
+transparent
+BananaCounter1
+transparent
+
+TurnMarker
+transparent
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+P = Player
+B = Body
+@ = Apple
+$ = Pear
+% = Plum
+& = Strawberry
+? = Orange
+w = Watermelon
+c = Cupcake
+" = Sausage
+; = Pie
+l = Lolipop
+: = Salami
+h = Cheese
+' = Pickle
+i = IceCream
+{ = Cake
+, = Leaf
+* = Token
+m = Move1
+o = Move2
+! = Move3
+e = Move4
+s = Move5
+1 = LeftCherry
+2 = TopPear
+g = GrowthPlum
+a = UnripeApple and AppleCounter5
+u = UnripeBanana and BananaCounter3
+r = RipeBanana
+RipeningFruit = UnripeApple or UnripeBanana or RipeBanana
+Fruit = Apple or Pear or Plum or Strawberry or Orange or Watermelon or Cupcake or Sausage or Pie or Lolipop or Salami or Cheese or Pickle or IceCream or Cake or Leaf or RipeBanana
+SpecialFruit = LeftCherry or TopPear
+Segment = WidthSegment or WidthBody
+
+=======
+SOUNDS
+=======
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Body, WidthBody, Wall, Fruit, SpecialFruit, GrowthPlum, RipeningFruit, Mark, WidthMark, Token, Move1, Move2, Move3, Move4, Move5
+Player, WidthSegment
+WidthLevel, Width2
+AppleCounter5, AppleCounter4, AppleCounter3, AppleCounter2, AppleCounter1, BananaCounter3, BananaCounter2, BananaCounter1
+CanEat
+TurnMarker
+MoveCounter
+
+======
+RULES
+======
+
+[ WidthSegment ] -> [ WidthMark ]
+[ MoveCounter ] -> [ ]
+[ Player ] -> [ Player Mark MoveCounter ]
+
+RIGHT [ > Player | LeftCherry ] -> [ > Player | CanEat LeftCherry ]
+DOWN [ > Player | TopPear ] -> [ > Player | CanEat TopPear ]
+
+late [ Player GrowthPlum ] -> [ Player Width2 ]
+
+late [ Width2 ] [ Player | WidthBody ] -> [ Width2 ] [ Player | ]
+late [ Width2 ] [ | Player ] [ Player | WidthBody ] -> [ Width2 ] [ | Player ] [ Player | ]
+late [ Width2 ] [ Player | Mark ] -> [ Width2 ] [ Player | ]
+late [ Width2 ] [ | Player ] [ Player | Mark ] -> [ Width2 ] [ | Player ] [ Player | ]
+
+late [ Width2 ] [ | Player ] -> [ Width2 ] [ WidthSegment | Player ]
+late [ Width2 ] [ Player | ] -> [ Width2 ] [ Player | WidthSegment ]
+
+late [ WidthSegment Wall ] -> restart
+late [ WidthSegment Body ] -> restart
+late [ WidthSegment WidthBody ] -> restart
+
+late [ Player Fruit ] -> [ Player ]
+late [ CanEat LeftCherry ] -> [ ]
+late [ CanEat TopPear ] -> [ ]
+
+late [ Player LeftCherry ] -> restart
+late [ Player TopPear ] -> restart
+
+late [ WidthSegment ] -> [ WidthSegment WidthMark ]
+
+late [ Mark no Player ] -> [ Body ]
+late [ WidthMark no WidthSegment ] -> [ WidthBody ]
+late [ Player Mark ] -> [ Player ]
+late [ WidthSegment WidthMark ] -> [ WidthSegment ]
+late [ Player Body ]  -> restart
+late [ Player Wall ] -> restart
+late [ MoveCounter ] [ Token ] -> [ ] [ ]
+
+late [ MoveCounter no Token ] [ Fruit ] -> restart
+late [ MoveCounter no Token ] [ RipeningFruit ] -> restart
+late [ MoveCounter no Token ] [ SpecialFruit ] -> restart
+late [ MoveCounter no Token ] [ GrowthPlum ] -> restart
+
+late [ ] [ UnripeApple ] -> [ ] [ TurnMarker UnripeApple ]
+late [ ] [ UnripeBanana ] -> [ ] [ TurnMarker UnripeBanana ]
+
+late [ TurnMarker AppleCounter5 ] -> [ AppleCounter4 ]
+late [ TurnMarker AppleCounter4 ] -> [ AppleCounter3 ]
+late [ TurnMarker AppleCounter3 ] -> [ AppleCounter2 ]
+late [ TurnMarker AppleCounter2 ] -> [ AppleCounter1 ]
+late [ TurnMarker AppleCounter1 UnripeApple ] -> [ Apple ]
+
+late [ TurnMarker BananaCounter3 ] -> [ BananaCounter2 ]
+late [ TurnMarker BananaCounter2 ] -> [ BananaCounter1 ]
+late [ TurnMarker BananaCounter1 UnripeBanana ] -> [ RipeBanana ]
+
+late [ TurnMarker ] -> [ ]
+
+late [ Player UnripeBanana ] -> restart
+late [ Player UnripeApple ] -> restart
+late [ Player RipeBanana ] -> [ Player ]
+
+==============
+WINCONDITIONS
+==============
+
+No Fruit
+No SpecialFruit
+No GrowthPlum
+No RipeningFruit
+
+=======
+LEVELS
+=======
+
+MESSAGE In the light of the moon, a little egg lay on a leaf.
+
+MESSAGE One Sunday morning the warm sun came up and - pop! - out of the egg came a tiny and very hungry caterpillar. He started to look for some food.
+
+#####################
+#mo!es...***********.#
+#####################
+#...................#
+#.....#.............#
+#.P...#..###........#
+#.....#....#........#
+#.....#.@..#........#
+#.....#....#........#
+#.....######........#
+#...................#
+#...................#
+#####################
+
+MESSAGE On Monday he ate through one apple. But he was still hungry. He started to look for some food.
+
+#####################
+#mo!es..***********.#
+######...**********.#
+#...#################
+#...#....#$.#########
+#.P.#....#..#########
+#...#....#..#########
+#...#.......#########
+#...#....#..#########
+#........#..#########
+#.....#..#..#########
+#.....#.$#..#########
+#####################
+
+MESSAGE On Tuesday he ate through two pears. But he was still hungry. He started to look for some food.
+
+#####################
+#mo!es..************#
+######..************#
+#%..#################
+#...##....%##########
+#.P........##########
+#..........##########
+######....###########
+#..........##########
+#..........##########
+#..........##########
+#.......%..##########
+#####################
+
+MESSAGE On Wednesday he ate through three plums. But he was still hungry. He started to look for some food.
+
+#####################
+#mo!es..************#
+######..************#
+#...#####***********#
+#...#################
+#.P.....#...........#
+######..#......&....#
+#....#..#&..........#
+#....#..###.........#
+#.&.................#
+#...................#
+#....#&.###.........#
+#####################
+
+MESSAGE On Thursday he ate through four strawberries. But he was still hungry. He started to look for some food.
+
+#####################
+#mo!es..************#
+######..************#
+#...#####***********#
+#...#################
+#.P.....#...........#
+######..#......?....#
+#....#..#?..........#
+#....#..###.........#
+#.?........?........#
+#...................#
+#....#?.###.........#
+#####################
+
+MESSAGE On Friday he ate through five oranges. But he was still hungry. He started to look for some food.
+
+#####################
+#mo!es**************#
+######**************#
+#...#####***********#
+#...#################
+#.P...{.#;....#.....#
+######..#..#..#.....#
+######i.#..#..#.....#
+######..#l.#".#..w..#
+######'.#..#..#.....#
+######..#..#..#.....#
+######h...:#....c...#
+#####################
+
+MESSAGE On Saturday he ate through one piece of chocolate cake, one ice-cream cone, one pickle, one slice of swiss cheese, one slice of salami, one lolipop, one piece of cherry pie, one sausage, one cupcake, and one slice of watermelon. That night he had a stomach ache!
+
+#####################
+#mo!es..************#
+######..************#
+#...#####***********#
+#...#################
+#.P.................#
+#...................#
+#........,..........#
+#...................#
+#...................#
+#...................#
+#...................#
+#####################
+
+MESSAGE That next day was Sunday again. The caterpillar ate through one nice green leaf, and after he felt much better.
+
+MESSAGE Now he wasn't hungry anymore - and he wasn't a little caterpillar anymore. He was a big, fat caterpillar.
+
+MESSAGE He built a small house, called a cocoon, around himself. He stayed inside for more than two weeks. Then he nibbled a hole in the cocoon, pushed his way out and...
+
+MESSAGE He was a beautiful butterfly!
+
+MESSAGE The Very Hungry Caterpillar: HARD MODE
+
+MESSAGE Now that you understand the core mechanics of the game, let's make things a little more challenging...
+
+MESSAGE LEVEL 1: Directional Eating Requirements - Certain fruits may only be eaten from certain directions. Cherry: From the left, Pears: From the top, Strawberries: No requirement
+
+#####################
+#mo!es..************#
+######..************#
+#...#####***********#
+#...#################
+#.P.#........#......#
+#...#...##...#......#
+#...#.1.##.2.#..&...#
+#...................#
+#...#...##..........#
+#...#...##......&...#
+#...#.&.##..........#
+#####################
+
+MESSAGE LEVEL 2: Growth Plums - Eating plums will now cause the caterpillar to become wider. Be careful! Some areas may be unaccessible after the caterpillar grows.
+
+#####################
+#mo!es..************#
+######..************#
+#...#####***********#
+#...#################
+#.P.#...&...........#
+#...#...##.......&..#
+#...#...##..........#
+#...................#
+#...#...##...g......#
+#...#...##..........#
+#...#...##..........#
+#####################
+
+MESSAGE LEVEL 3: Ripening Stages - Some fruits have ripening stages; you have to wait a certain amount of moves to eat them! Unripe apples ripen in 5 moves. Upripe bananas ripen in 3 moves.
+
+#####################
+#mo!es...***********#
+######...***********#
+#a..#####......*****#
+#...#################
+#.P.u...............#
+#.......##..........#
+##########....au....#
+##########....au....#
+##########....au....#
+##########..........#
+##########..........#
+#####################
+
+MESSAGE Nice! Now comes the REAL challenge...let's try combining these new mechanics. Good Luck!
+
+#####################
+#mo!es...***********#
+######...***********#
+#..a#####***********#
+#...#################
+#.P.#........########
+#u..#...2.1..########
+#...#.......1########
+#...........2########
+#...#################
+#.1.#################
+#...#################
+#####################
+
+MESSAGE Nice Job!
+
+#####################
+#mo!es...***********#
+######...***********#
+#########***********#
+#####################
+#####...........#####
+#####.2......1..#####
+#####....g......#####
+#######....##########
+#...........&########
+##########...########
+#.P.....a....########
+#####################
+
+MESSAGE Nice Job!
+
+#####################
+#mo!es...***********#
+######...***********#
+#########***********#
+#####################
+#.............#######
+#..............1#####
+#...a....g......#####
+#...##.......########
+#...##.......########
+#..u##...2...########
+#.P.##.......########
+#####################
