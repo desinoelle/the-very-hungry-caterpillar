@@ -2,14 +2,14 @@
 
 A cutesy puzzle game based on the beloved children's book by Eric Carle, built in **PuzzleScript**.
 
-The gameplay is similar to Snake, except the caterpillar's body expands on *every move* — not just
+The gameplay is similar to Snake, except the caterpillar's body expands on *every move*, not just
 when eating. Players must consume all fruit on the board without running into walls or trapping
 themselves, all within a limited number of moves.
 
 The game features two modes: **Story Mode** (lighthearted, introductory) and **Hard Mode**
 (challenging mechanics that build on everything learned in Story Mode).
 
-🎮 **[[Play it here](#)] -> (https://www.puzzlescript.net/play.html?p=46a8a407dd664985ab3f8e38170c0139)**
+🎮 **[[Play it here](https://www.puzzlescript.net/play.html?p=46a8a407dd664985ab3f8e38170c0139)]**
 
 ---
 
@@ -24,9 +24,9 @@ The game features two modes: **Story Mode** (lighthearted, introductory) and **H
 
 | Mechanic | Description |
 |---|---|
-| **Directional Eating** | Certain fruit must be eaten from a specific direction — cherries from the left, pears from the top |
-| **Growth Plums** | Eating a plum makes the caterpillar grow wider — eat too early and you may block yourself in |
-| **Ripening Fruit** | Some fruit must be waited on before they can be eaten — bananas ripen in 3 moves, apples in 5 |
+| **Directional Eating** | Certain fruit must be eaten from a specific direction - cherries from the left, pears from the top |
+| **Growth Plums** | Eating a plum makes the caterpillar grow wider - eat too early and you may block yourself in |
+| **Ripening Fruit** | Some fruit must be waited on before they can be eaten - bananas ripen in 3 moves, apples in 5 |
 
 ---
 
@@ -57,4 +57,4 @@ The game features two modes: **Story Mode** (lighthearted, introductory) and **H
 
 ## 🛠️ Built With
 
-- [PuzzleScript](https://www.puzzlescript.net/) — an open-source HTML5 puzzle
+- [PuzzleScript](https://www.puzzlescript.net/) - an open-source HTML5 puzzle
